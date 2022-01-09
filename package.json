@@ -6,9 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josharnow/Playlist-Maestro.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josharnow/Playlist-Maestro/issues"
+  },
+  "homepage": "https://github.com/josharnow/Playlist-Maestro#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.2",

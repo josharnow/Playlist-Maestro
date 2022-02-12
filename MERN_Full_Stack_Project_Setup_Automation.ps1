@@ -49,11 +49,11 @@ const mongoose = require("mongoose");
 const port = 27017;
 
 // Export a function to be called in server.js
-module.exports = (db_name) => {
-  mongoose.connect(``mongodb://127.0.0.1:`${port}/`${db_name}``, {
+module.exports = (db_names) => {
+  mongoose.connect(``mongodb://127.0.0.1:`${port}/`${db_names}``, {
   })
-  .then(() => console.log(``Successfully connected to `${db_name}``))
-  .catch((err) => console.log(``mongoose connection to `${db_name} failed: `${err}``));
+  .then(() => console.log(``Successfully connected to `${db_names}``))
+  .catch((err) => console.log(``mongoose connection to `${db_names} failed: `${err}``));
 };
 "@
 
@@ -181,6 +181,7 @@ $NewContent = Get-Content -Path $IndexJSPath |
 # Write content of $NewContent variable back to file
 $NewContent | Out-File -FilePath $IndexJSPath -Encoding Default -Force
 
+
 $AppJSPath = '.\src\App.js'
 
 $NewAppJSContent = Get-Content -Path $AppJSPath |
@@ -196,6 +197,25 @@ ForEach-Object {
 
 # Write content of $NewAppJSContent variable back to file
 $NewAppJSContent | Out-File -FilePath $AppJSPath -Encoding Default -Force
+
+
+$PackageJSONPath = '..\package.json'
+
+$NewPackageJSONContent = Get-Content -Path $PackageJSONPath |
+ForEach-Object {
+  # Output the existing line to pipeline in any case
+  $_
+
+  # If line matches regex
+  if ($_ -match ('^' + [regex]::Escape('"version": "1.0.0",'))) {
+    '"type": "module",'
+  }
+}
+
+# Write content of $NewPackageJSONContent variable back to file
+$NewPackageJSONContent | Out-File -FilePath $PackageJSONPath -Encoding Default -Force
+
+
 
 $MainContent = @"
 import React, { useEffect, useState } from 'react'

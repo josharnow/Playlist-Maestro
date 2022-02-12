@@ -1,10 +1,16 @@
 {
   "name": "playlist-maestro",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"",
+    "backend": "nodemon ./server/server.js",
+    "frontend": "npm start --prefix ./client",
+    "doc": "jsdoc -c jsdoc.conf.json ./client/src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd client && npm install"
   },
   "repository": {
     "type": "git",
@@ -18,8 +24,14 @@
   },
   "homepage": "https://github.com/josharnow/Playlist-Maestro#readme",
   "dependencies": {
+    "axios": "^0.25.0",
     "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
     "express": "^4.17.2",
-    "mongoose": "^6.1.5"
+    "mongoose": "^6.1.5",
+    "query-string": "^7.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
   }
 }

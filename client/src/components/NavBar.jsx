@@ -3,6 +3,9 @@ import { accessToken, logout } from '../spotify';
 import { useParams, Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import Login from './Login';
+// import styles from './NavBar.module.css';
+import styled from 'styled-components/macro';
 
 const NavBar = () => {
   const [token, setToken] = useState(null);
@@ -26,41 +29,43 @@ const NavBar = () => {
 
   return (
     <React.Fragment>
-      <div className='d-flex justify-content-between margin'>
-        <h1 className=''>🎵 Playlist Maestro 🎵</h1>
+      <div className={""}>
+        <div className='d-flex justify-content-between margin'>
+          <h1 className=''>🎵 Playlist Maestro 🎵</h1>
+
+          {
+            (token && window.location.pathname !== `/profile/${id}`)
+              && <SearchBar parentCallback={ handleCallback }/>
+          }
+
+          {
+            (!token && window.location.pathname !== `/profile/${id}`)
+              && <h2 className=''>Please log in to search</h2>
+          }
+
+          {
+            (token && window.location.pathname !== `/profile/${id}`)
+              && <Link to={ `/profile/${id}` }><button>Your Profile</button></Link>
+          }
+
+          {
+            (token && window.location.pathname === `/profile/${id}`)
+              && <Link to={ `/` }><button>Go Home</button></Link>
+          }
+          
+          {/* If no token, render the login button; else render the logout button */ }
+          {
+            !token
+              ? <Login />
+              : <button onClick={ logout }>Logout</button>
+          }
+        </div>
 
         {
-          (token && window.location.pathname !== `/profile/${id}`)
-            && <SearchBar parentCallback={ handleCallback }/>
-        }
-
-        {
-          (!token && window.location.pathname !== `/profile/${id}`)
-            && <h2 className=''>Please log in to search</h2>
-        }
-
-        {
-          (token && window.location.pathname !== `/profile/${id}`)
-            && <Link to={ `/profile/${id}` }><button>Your Profile</button></Link>
-        }
-
-        {
-          (token && window.location.pathname === `/profile/${id}`)
-            && <Link to={ `/` }><button>Go Home</button></Link>
-        }
-        
-        {/* If no token, render the login button; else render the logout button */ }
-        {
-          !token
-              ? <a className="App-link" href="http://localhost:8000/api/login">Login to Spotify</a>
-            : <button onClick={ logout }>Logout</button>
+          token &&
+            <SearchResults artists={ artists } tracks={ tracks } /> // Passes the artists variable to the SearchResults component as "artists"
         }
       </div>
-
-      {
-        token &&
-          <SearchResults artists={ artists } tracks={ tracks } /> // Passes the artists variable to the SearchResults component as "artists"
-      }
     </React.Fragment>
   );
 }

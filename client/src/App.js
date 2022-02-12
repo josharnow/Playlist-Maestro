@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { accessToken, getCurrentUserProfile } from './spotify';
 import { catchErrors } from './utils';
-import './App.css';
+// import './App.css';
 import Main from './views/Main';
 import Profile from './views/Profile';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-
-// Scroll to top of page when changing routes
-// https://reactrouter.com/web/guides/scroll-restoration/scroll-to-top
-function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
+// import styled, { createGlobalStyle } from 'styled-components/macro';
+import { GlobalStyle } from './styles';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -35,9 +25,21 @@ function App() {
     // console.dir(profile);
   }, []);
 
+  // Scroll to top of page when changing routes
+  // https://reactrouter.com/web/guides/scroll-restoration/scroll-to-top
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+  }
 
   return (
     <BrowserRouter>
+      <GlobalStyle /> {/* This will set the styles defined in GlobalStyle globally */}
       <ScrollToTop />
 
       <Routes>

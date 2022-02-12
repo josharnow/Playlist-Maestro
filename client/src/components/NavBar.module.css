@@ -21,3 +21,11 @@
   color: red;
   margin: 0 auto;
 }
+
+.background {
+  background-color: #3b5998;
+  opacity: 0.4;
+  background-image:  linear-gradient(30deg, #81b71a 12%, transparent 12.5%, transparent 87%, #81b71a 87.5%, #81b71a), linear-gradient(150deg, #81b71a 12%, transparent 12.5%, transparent 87%, #81b71a 87.5%, #81b71a), linear-gradient(30deg, #81b71a 12%, transparent 12.5%, transparent 87%, #81b71a 87.5%, #81b71a), linear-gradient(150deg, #81b71a 12%, transparent 12.5%, transparent 87%, #81b71a 87.5%, #81b71a), linear-gradient(60deg, #81b71a77 25%, transparent 25.5%, transparent 75%, #81b71a77 75%, #81b71a77), linear-gradient(60deg, #81b71a77 25%, transparent 25.5%, transparent 75%, #81b71a77 75%, #81b71a77);
+  background-size: 66px 116px;
+  background-position: 0 0, 0 0, 33px 58px, 33px 58px, 0 0, 33px 58px;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { accessToken } from '../spotify';
 import { useParams } from 'react-router-dom';
 import SearchBar from './SearchBar';
@@ -27,7 +27,7 @@ const NavBar = () => {
   // }
 
   return (
-    <React.Fragment>
+    <>
       <div className={""}>
         <div className='d-flex justify-content-between margin'>
           <h1 className=''>🎵 Playlist Maestro 🎵</h1>
@@ -65,7 +65,7 @@ const NavBar = () => {
             <SearchResults artists={ artists } tracks={ tracks } /> // Passes the artists variable to the SearchResults component as "artists"
         }
       </div>
-    </React.Fragment>
+    </>
   );
 }
 export default NavBar;

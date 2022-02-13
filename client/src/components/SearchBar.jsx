@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { accessToken } from '../spotify';
 
@@ -60,7 +60,7 @@ const SearchBar = ({ parentCallback }) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <label htmlFor="endpoints" className='leftMargin'>Search for:</label> {/* Matches to id with value of "endpoints" */ }
       <select name="endpoints" id="endpoints" onChange={e => setSearchType(e.target.value)} defaultValue="artists">
         {/* <optgroup label="Artists"> */}
@@ -73,7 +73,7 @@ const SearchBar = ({ parentCallback }) => {
         <input type="text" onChange={ e => setSearchKey(e.target.value) } className='margin' />
         <button type="submit">Search</button>
       </form>
-    </React.Fragment>
+    </>
   )
 }
 export default SearchBar;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   accessToken,
   getCurrentUserProfile,
@@ -44,7 +44,7 @@ const User = () => {
     // console.log(topTracks)
 
   return (
-    <React.Fragment>
+    <>
       { 
         (token && profile) 
           && (
@@ -103,18 +103,11 @@ const User = () => {
       </main>
 
 
-
-      {/* <SectionWrapper title="Top tracks this month" seeAllLink="/top-tracks">
-        <TrackList tracks={ topTracks.items.slice(0, 10) } />
-      </SectionWrapper> */}
-
-
-
       { 
         (!token) 
           && <h1>Please log in to view your profile</h1>
       }
-    </React.Fragment>
+    </>
   );
 }
 export default User;

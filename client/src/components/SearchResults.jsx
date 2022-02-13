@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { accessToken } from '../spotify';
 
 const SearchResults = ({artists, tracks}) => { // Pulls in the "artists" variable passed in from the parent (NavBar) component
@@ -32,7 +32,7 @@ const SearchResults = ({artists, tracks}) => { // Pulls in the "artists" variabl
 
 
   return (
-    <React.Fragment>
+    <>
       {/* Renders artist data */ }
       {
         (token && artists) &&
@@ -44,7 +44,7 @@ const SearchResults = ({artists, tracks}) => { // Pulls in the "artists" variabl
         (token && tracks) &&
           renderTracks()
       }
-    </React.Fragment>
+    </>
   )
 }
 export default SearchResults;

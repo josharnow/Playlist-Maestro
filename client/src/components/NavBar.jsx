@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { accessToken, logout } from '../spotify';
-import { useParams, Link } from 'react-router-dom';
+import { accessToken } from '../spotify';
+import { useParams } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import Login from './Login';
+import { LoginButton, LogoutButton, ProfileButton, HomeButton } from './buttons';
 // import styles from './NavBar.module.css';
-import styled from 'styled-components/macro';
 
 const NavBar = () => {
   const [token, setToken] = useState(null);
@@ -45,19 +44,19 @@ const NavBar = () => {
 
           {
             (token && window.location.pathname !== `/profile/${id}`)
-              && <Link to={ `/profile/${id}` }><button>Your Profile</button></Link>
+              && <ProfileButton />
           }
 
           {
             (token && window.location.pathname === `/profile/${id}`)
-              && <Link to={ `/` }><button>Go Home</button></Link>
+              && <HomeButton />
           }
           
           {/* If no token, render the login button; else render the logout button */ }
           {
             !token
-              ? <Login />
-              : <button onClick={ logout }>Logout</button>
+              ? <LoginButton />
+              : <LogoutButton />
           }
         </div>
 

@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro';
 
-const StyledLoginContainer = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
+// const StyledLoginContainer = styled.main`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+// `;
 
 // styled-components (CSS variables are declared in the :root selector, located in the GlobalStyle variable declared in ../styles/variables.js)
 const StyledLoginButton = styled.a`
@@ -25,11 +25,11 @@ const StyledLoginButton = styled.a`
   }
 `;
 
-const Login = () => (
+const LoginButton = () => (
 
     <StyledLoginButton href="http://localhost:8000/api/login">
       Log in
     </StyledLoginButton>
 
 );
-export default Login;
+export default LoginButton;

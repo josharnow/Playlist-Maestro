@@ -17,9 +17,12 @@ const StyledLogoutButton = styled.button`
   }
 `;
 
-const LogoutButton = () => (
-  <StyledLogoutButton onClick={ logout }>
-    Log Out
-  </StyledLogoutButton>
-);
+const LogoutButton = () => {
+
+  return(
+    <StyledLogoutButton onClick={ logout }>
+      Log Out
+    </StyledLogoutButton>
+  );
+};
 export default LogoutButton;

@@ -25,11 +25,12 @@ const StyledLoginButton = styled.a`
   }
 `;
 
-const LoginButton = () => (
+const LoginButton = () => {
 
+  return(
     <StyledLoginButton href="http://localhost:8000/api/login">
       Log in
     </StyledLoginButton>
-
-);
+  );
+};
 export default LoginButton;

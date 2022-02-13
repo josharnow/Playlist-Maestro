@@ -26,17 +26,15 @@ const generateRandomString = length => {
 
 const stateKey = 'spotify_auth_state';
 
-export const test = (req, res) => {
-  res.json({
-    message: "Hello World"
-  });
-}
-
 export const login = (req, res) => {
   const state = generateRandomString(16); //  Protects against attacks such as cross-site request forgery
   res.cookie(stateKey, state);
 
-  const scope = 'user-read-private user-read-email'; // Space-separated list of Spotify's pre-defined authorization scopes
+  const scope = [ // Space-separated list of Spotify's pre-defined authorization scopes (hence joining the array)
+    'user-read-private',
+    'user-read-email',
+    'user-top-read',
+  ].join(' '); 
 
   const queryParams = queryString.stringify({ // Serializes an object with keys and values into a query string
     client_id: client_id,

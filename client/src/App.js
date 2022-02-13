@@ -9,16 +9,16 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { GlobalStyle } from './styles';
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [profile, setProfile] = useState(null);
+  // const [token, setToken] = useState(null);
+  // const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    setToken(accessToken); // Sets token to the accessToken variable imported from the spotify.js file
+    // setToken(accessToken); // Sets token to the accessToken variable imported from the spotify.js file
 
     const fetchData = async () => { // Because the await operator can only be used inside of async functions, an async function is used here. This is better than making the whole useEffect hook async, as that can quickly create complicated problems.
       const { data } = await getCurrentUserProfile(); // getCurrentUserProfile() returns a promise, so we need to wait for the promise to be resolved using await. Destructuring is used to access the data property of the axios response.
       
-      setProfile(data);
+      // setProfile(data);
     };
 
     catchErrors(fetchData()); // Invokes the async function

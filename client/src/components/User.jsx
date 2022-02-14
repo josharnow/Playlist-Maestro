@@ -6,13 +6,12 @@ import {
   getTopArtists,
   getTopTracks
 } from '../spotify';
-import { catchErrors } from '../utils';
-import { StyledHeader } from '../styles';
-// import { SectionWrapper, ArtistsGrid } from './'
 import SectionWrapper from './SectionWrapper';
 import ArtistsGrid from './ArtistsGrid';
 import TrackList from './TrackList';
 import PlaylistsGrid from './PlaylistsGrid';
+import { catchErrors } from '../utils';
+import { StyledHeader } from '../styles';
 
 const User = () => {
   const [token, setToken] = useState(null);

@@ -4,13 +4,17 @@ import { catchErrors } from './utils';
 // import './App.css';
 import Main from './views/Main';
 import Profile from './views/Profile';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import TopArtists from './views/TopArtists';
+import TopTracks from './views/TopTracks';
+import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom';
 // import styled, { createGlobalStyle } from 'styled-components/macro';
 import { GlobalStyle } from './styles';
 
 function App() {
   // const [token, setToken] = useState(null);
   // const [profile, setProfile] = useState(null);
+  const { id } = useParams();
+
 
   useEffect(() => {
     // setToken(accessToken); // Sets token to the accessToken variable imported from the spotify.js file
@@ -45,13 +49,13 @@ function App() {
       <Routes>
         {/* when a <Switch> is rendered, it searches through its children <Route> elements to find one whose path matches the current URL. When it finds one, it renders that <Route> and ignores all others. Therefore, routes with more specific (typically longer) paths should be listed before less-specific ones. */}
 
-        <Route path="/top-artists" element={<h1>Top Artists</h1>} />
-        <Route path="/top-tracks" element={<h1>Top Tracks</h1>} />
+        <Route path="/top-artists" element={ <TopArtists /> } />
+        <Route path="/top-tracks" element={ <TopTracks />} />
         <Route path="/playlists/:id" element={<h1>Playlist</h1>} />
         <Route path="/playlists" element={<h1>Playlists</h1>} />
 
 
-        <Route path={`/profile/:id`} element={ <Profile /> } />
+        <Route path={`/profile/${id}`} element={ <Profile /> } />
         <Route path="/" element={ <Main /> } />
       </Routes>
     </BrowserRouter>

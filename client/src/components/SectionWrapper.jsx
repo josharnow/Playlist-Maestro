@@ -1,9 +1,10 @@
 // This is a component that will wrap around the <ArtistsGrid> component
 
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { StyledSection } from '../styles';
 
 const SectionWrapper = ({ children, title, seeAllLink, breadcrumb }) => {
+  const { id } = useParams();
 
   return (
     <StyledSection>
@@ -12,7 +13,7 @@ const SectionWrapper = ({ children, title, seeAllLink, breadcrumb }) => {
           <h2 className="section__heading">
             { breadcrumb && (
               <span className="section__breadcrumb">
-                <Link to="/">Profile</Link>
+                <Link to={`/profile/${id}`}>Profile</Link>
               </span>
             ) }
             { title && (

@@ -3,7 +3,14 @@ import { accessToken } from '../spotify';
 import { useParams } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import { LoginButton, LogoutButton, ProfileButton, HomeButton } from './buttons';
+import { 
+  LoginButton, 
+  LogoutButton, 
+  ProfileButton, 
+  HomeButton,
+  TopArtistsButton,
+  TopTracksButton
+} from './buttons';
 // import styles from './NavBar.module.css';
 
 const NavBar = () => {
@@ -33,12 +40,12 @@ const NavBar = () => {
           <h1 className=''>🎵 Playlist Maestro 🎵</h1>
 
           {
-            (token && window.location.pathname !== `/profile/${id}`)
+            (token && window.location.pathname === `/`)
               && <SearchBar parentCallback={ handleCallback }/>
           }
 
           {
-            (!token && window.location.pathname !== `/profile/${id}`)
+            (!token && window.location.pathname === `/`)
               && <h2 className=''>Please log in to search</h2>
           }
 
@@ -48,15 +55,27 @@ const NavBar = () => {
           }
 
           {
-            (token && window.location.pathname === `/profile/${id}`)
+            (token && window.location.pathname !== `/top-artists`)
+            && <TopArtistsButton />
+          }
+
+          {
+            (token && window.location.pathname !== `/top-tracks`)
+            && <TopTracksButton />
+          }
+
+          {
+            (token && window.location.pathname !== `/`)
               && <HomeButton />
           }
+
           
-          {/* If no token, render the login button; else render the logout button */ }
+          
+          {/* If token, render the logout button; else render the login button */ }
           {
-            !token
-              ? <LoginButton />
-              : <LogoutButton />
+            token
+              ? <LogoutButton />
+              : <LoginButton />
           }
         </div>
 

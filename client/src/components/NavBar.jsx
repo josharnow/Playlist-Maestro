@@ -9,9 +9,9 @@ import {
   ProfileButton, 
   HomeButton,
   TopArtistsButton,
-  TopTracksButton
+  TopTracksButton,
+  PlaylistsButton
 } from './buttons';
-// import styles from './NavBar.module.css';
 
 const NavBar = () => {
   const [token, setToken] = useState(null);
@@ -50,18 +50,23 @@ const NavBar = () => {
           }
 
           {
-            (token && window.location.pathname !== `/profile/${id}`)
+            (token && window.location.pathname !== `/profile`)
               && <ProfileButton />
           }
 
           {
             (token && window.location.pathname !== `/top-artists`)
-            && <TopArtistsButton />
+              && <TopArtistsButton />
           }
 
           {
             (token && window.location.pathname !== `/top-tracks`)
-            && <TopTracksButton />
+              && <TopTracksButton />
+          }
+
+          {
+            (token && window.location.pathname !== `/playlists`)
+              && <PlaylistsButton />
           }
 
           {

@@ -11,7 +11,7 @@ const ProfileButton = () => {
 
   return (
     <>
-      <Link to={ `/profile/${id}` }>
+      <Link to={ `/profile` }>
         <StyledProfileButton>Your Profile</StyledProfileButton>
       </Link>
     </>

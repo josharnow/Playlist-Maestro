@@ -6,6 +6,8 @@ import Main from './views/Main';
 import Profile from './views/Profile';
 import TopArtists from './views/TopArtists';
 import TopTracks from './views/TopTracks';
+import Playlists from './views/Playlists';
+import Playlist from './views/Playlist';
 import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom';
 // import styled, { createGlobalStyle } from 'styled-components/macro';
 import { GlobalStyle } from './styles';
@@ -51,11 +53,11 @@ function App() {
 
         <Route path="/top-artists" element={ <TopArtists /> } />
         <Route path="/top-tracks" element={ <TopTracks />} />
-        <Route path="/playlists/:id" element={<h1>Playlist</h1>} />
-        <Route path="/playlists" element={<h1>Playlists</h1>} />
+        <Route path="/playlists/:id" element={ <Playlist />} />
+        <Route path="/playlists" element={ <Playlists /> } />
 
 
-        <Route path={`/profile/${id}`} element={ <Profile /> } />
+        <Route path={`/profile`} element={ <Profile /> } />
         <Route path="/" element={ <Main /> } />
       </Routes>
     </BrowserRouter>

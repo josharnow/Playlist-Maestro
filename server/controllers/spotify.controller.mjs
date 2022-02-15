@@ -34,6 +34,8 @@ export const login = (req, res) => {
     'user-read-private',
     'user-read-email',
     'user-top-read',
+    'playlist-modify-public',
+    'playlist-modify-private'
   ].join(' '); 
 
   const queryParams = queryString.stringify({ // Serializes an object with keys and values into a query string

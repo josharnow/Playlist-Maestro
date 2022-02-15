@@ -10,7 +10,8 @@ import {
   HomeButton,
   TopArtistsButton,
   TopTracksButton,
-  PlaylistsButton
+  PlaylistsButton,
+  CreatePlaylistButton
 } from './buttons';
 
 const NavBar = () => {
@@ -40,12 +41,12 @@ const NavBar = () => {
           <h1 className=''>🎵 Playlist Maestro 🎵</h1>
 
           {
-            (token && window.location.pathname === `/`)
+            (token && (window.location.pathname === `/` || window.location.pathname === `/create-playlist`))
               && <SearchBar parentCallback={ handleCallback }/>
           }
 
           {
-            (!token && window.location.pathname === `/`)
+            (!token && (window.location.pathname === `/` || window.location.pathname === `/create-playlist`))
               && <h2 className=''>Please log in to search</h2>
           }
 
@@ -67,6 +68,11 @@ const NavBar = () => {
           {
             (token && window.location.pathname !== `/playlists`)
               && <PlaylistsButton />
+          }
+
+          {
+            (token && window.location.pathname !== `/create-playlist`)
+              && <CreatePlaylistButton />
           }
 
           {

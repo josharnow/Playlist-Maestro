@@ -34,8 +34,8 @@ const User = () => {
         const userTopArtist = await getTopArtists();
         setTopArtists(userTopArtist.data);
         
-      const userTopTracks = await getTopTracks();
-      setTopTracks(userTopTracks.data);
+        const userTopTracks = await getTopTracks();
+        setTopTracks(userTopTracks.data);
       };
       
       catchErrors(fetchData()); // Invokes the async function

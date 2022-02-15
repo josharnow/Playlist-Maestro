@@ -185,3 +185,13 @@ export const getPlaylistById = playlist_id => {
 export const getAudioFeaturesForTracks = ids => {
   return axios.get(`/audio-features?ids=${ids}`);
 };
+
+/**
+ * Create Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/create-playlist
+ * @param {string} user_id - The user's Spotify user ID
+ * @returns {Promise}
+ */
+export const createPlaylist = user_id => {
+  return axios.post(`/users/${user_id}/playlists`);
+};

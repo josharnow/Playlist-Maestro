@@ -7,3 +7,4 @@ export { default as TimeRangeButtons } from './TimeRangeButtons';
 export { default as TopArtistsButton } from './TopArtistsButton';
 export { default as TopTracksButton } from './TopTracksButton';
 export { default as PlaylistsButton } from './PlaylistsButton';
+export { default as CreatePlaylistButton } from './CreatePlaylistButton';

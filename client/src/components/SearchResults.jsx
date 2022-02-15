@@ -24,7 +24,7 @@ const SearchResults = ({artists, tracks}) => { // Pulls in the "artists" variabl
   const renderTracks = () => {
     return tracks.map(track => {
       return <div key={ track.id }>
-
+        {/* TODO - Make tracks clickable, such that they can be added to a playlist */ }
         { track.name }
       </div>
     })

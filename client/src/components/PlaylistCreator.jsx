@@ -4,8 +4,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { catchErrors } from '../utils'
 // import { getPlaylistById, getAudioFeaturesForTracks } from '../spotify';
 import { getCurrentUserProfile, createPlaylist } from '../spotify';
-// import TrackList from './TrackList';
-// import SectionWrapper from './SectionWrapper';
+import TrackList from './TrackList';
+import SectionWrapper from './SectionWrapper';
 // import Loader from './Loader';
 // import { StyledHeader, StyledDropdown } from '../styles';
 
@@ -38,16 +38,18 @@ const PlaylistCreator = () => {
     
     catchErrors(fetchData()); // Invokes the async function
     
-    createPlaylist(userID);
+    // createPlaylist(userID);
   }, [userID]);
   
 
   return (
-    <>
-
+    <main>
+      <SectionWrapper title="Create a New Playlist" breadcrumb={ true }>
 
       {console.log(userID)}
-    </>
+
+      </SectionWrapper>
+    </main>
   )
 }
 export default PlaylistCreator;

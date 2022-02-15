@@ -41,12 +41,12 @@ const NavBar = () => {
           <h1 className=''>🎵 Playlist Maestro 🎵</h1>
 
           {
-            (token && (window.location.pathname === `/` || window.location.pathname === `/create-playlist`))
+            (token && window.location.pathname === `/`)
               && <SearchBar parentCallback={ handleCallback }/>
           }
 
           {
-            (!token && (window.location.pathname === `/` || window.location.pathname === `/create-playlist`))
+            (!token && window.location.pathname === `/`)
               && <h2 className=''>Please log in to search</h2>
           }
 

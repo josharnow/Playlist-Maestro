@@ -4,18 +4,24 @@ import { accessToken } from '../spotify';
 
 const SearchBar = ({ parentCallback }) => {
   const [token, setToken] = useState(null); // Initial state is set to null
-  const [searchType, setSearchType] = useState("artists"); // Initial state is set to an empty string
+  const [searchType, setSearchType] = useState("artists"); // Initial state is set to "artists"
   const [searchKey, setSearchKey] = useState(""); // Initial state is set to an empty string
-
+  
+  
   useEffect(() => {
     setToken(accessToken); // Sets token to the accessToken variable imported from the spotify.js file
   }, [])
-
+  
   const search = async (e) => {
     e.preventDefault(); // Prevents the page from reloading when invoking the search
     console.log(`Dropdown selection value: "${searchType}"`);
     console.log(`searchKey value: "${searchKey}"`);
-    if (searchType === "artists") {
+
+    // if (window.location.pathname !== `/`) {
+    //   setSearchType("tracks");
+    // }
+
+    if (searchType === "artists" && window.location.pathname === `/`) {
       const { data } = await axios.get("https://api.spotify.com/v1/search", {
         headers: {
           Authorization: `Bearer ${token}`
@@ -35,7 +41,7 @@ const SearchBar = ({ parentCallback }) => {
       
       parentCallback(data.artists.items, null); // Passes the values of the artists search result back to the parent component (NavBar) to then be passed to and rendered on the SearchResults component. The second argument is set to null to ensure that setTracks receives a null argument in the parentCallback function, which is contained in the parent function (NavBar).
 
-    } else if (searchType === "tracks") {
+    } else if (searchType === "tracks" || window.location.pathname !== `/`) {
       const { data } = await axios.get("https://api.spotify.com/v1/search", {
         headers: {
           Authorization: `Bearer ${token}`
@@ -62,12 +68,15 @@ const SearchBar = ({ parentCallback }) => {
   return (
     <>
       <label htmlFor="endpoints" className='leftMargin'>Search for:</label> {/* Matches to id with value of "endpoints" */ }
-      <select name="endpoints" id="endpoints" onChange={e => setSearchType(e.target.value)} defaultValue="artists">
-        {/* <optgroup label="Artists"> */}
-        <option value="artists">Artists</option>
-        <option value="tracks">Tracks</option>
-        {/* </optgroup> */}
-      </select>
+      {
+        window.location.pathname === `/`
+          && (
+            <select name="endpoints" id="endpoints" onChange={e => setSearchType(e.target.value)} defaultValue="artists">
+              <option value="artists">Artists</option>
+              <option value="tracks">Tracks</option>
+            </select>
+          )
+      }
 
       <form onSubmit={ search }> {/* Invokes the search function on form submission */ }
         <input type="text" onChange={ e => setSearchKey(e.target.value) } className='margin' />

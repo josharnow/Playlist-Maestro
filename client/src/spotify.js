@@ -132,14 +132,14 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 
 /**
  * Get Current User's Profile
- * https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-current-users-profile
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile
  * @returns {Promise}
  */
 export const getCurrentUserProfile = () => axios.get('/me'); // Since the base URL was set globally, the URL being used for the axios request only needs to be "/me" rather than "https://api.spotify.com/v1/me"
 
 /**
  * Get a List of Current User's Playlists
- * https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-a-list-of-current-users-playlists
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-a-list-of-current-users-playlists
  * @returns {Promise}
  */
 export const getCurrentUserPlaylists = (limit = 20) => {
@@ -147,8 +147,8 @@ export const getCurrentUserPlaylists = (limit = 20) => {
 };
 
 /**
- * Get a User's Top Artists and Tracks
- * https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-top-artists-and-tracks
+ * Get a User's Top Artists
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
  * @param {string} time_range - 'short_term' (last 4 weeks) 'medium_term' (last 6 months) or 'long_term' (calculated from several years of data and including all new data as it becomes available). The value of this query parameter determines the time frames in which the data is computed. Defaults to 'short_term'.
  * @returns {Promise}
  */
@@ -158,7 +158,7 @@ export const getTopArtists = (time_range = 'short_term') => {
 
 /**
  * Get a User's Top Tracks
- * https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-users-top-artists-and-tracks
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
  * @param {string} time_range - 'short_term' (last 4 weeks) 'medium_term' (last 6 months) or 'long_term' (calculated from several years of data and including all new data as it becomes available). Defaults to 'short_term'
  * @returns {Promise}
  */
@@ -168,7 +168,7 @@ export const getTopTracks = (time_range = 'short_term') => {
 
 /**
  * Get a Playlist
- * https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-playlist
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-playlist
  * @param {string} playlist_id - The Spotify ID for the playlist.
  * @returns {Promise}
  */
@@ -178,12 +178,25 @@ export const getPlaylistById = playlist_id => {
 
 /**
  * Get Audio Features for Several Tracks
- * https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-several-audio-features
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features
  * @param {string} ids - A comma-separated list of the Spotify IDs for the tracks
  * @returns {Promise}
  */
 export const getAudioFeaturesForTracks = ids => {
   return axios.get(`/audio-features?ids=${ids}`);
+};
+
+/**
+ * Add Items to Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/add-tracks-to-playlist
+ * @param {string} playlist_id - The Spotify ID of the playlist
+ * @param {string[]} uris - A comma-separated list of Spotify URIs to add, can be track or episode URIs
+ * @returns {Promise}
+ */
+export const addItemsToPlaylist = (playlist_id, uris) => {
+  return axios.post(`/playlists/${playlist_id}/tracks`, {
+    uris: uris
+  });
 };
 
 /**

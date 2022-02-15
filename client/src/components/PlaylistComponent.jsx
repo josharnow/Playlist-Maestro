@@ -2,10 +2,12 @@ import { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { catchErrors } from '../utils'
-import { getPlaylistById, getAudioFeaturesForTracks } from '../spotify';
+import { getPlaylistById, getAudioFeaturesForTracks, addItemsToPlaylist } from '../spotify';
 import TrackList from './TrackList';
 import SectionWrapper from './SectionWrapper';
 import Loader from './Loader';
+import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
 import { StyledHeader, StyledDropdown } from '../styles';
 
 const PlaylistComponent = () => {
@@ -13,10 +15,14 @@ const PlaylistComponent = () => {
   const [playlist, setPlaylist] = useState(null);
   const [tracksData, setTracksData] = useState(null);
   const [tracks, setTracks] = useState(null);
+  const [searchTracks, setSearchTracks] = useState(null);
+  const [artists, setArtists] = useState(null);
   const [audioFeatures, setAudioFeatures] = useState(null);
   const [sortValue, setSortValue] = useState('');
+  const [uris, setUris] = useState([]);
   const sortOptions = ['danceability', 'tempo', 'energy'];
 
+  // First useEffect
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await getPlaylistById(id);
@@ -27,6 +33,7 @@ const PlaylistComponent = () => {
     catchErrors(fetchData());
   }, [id]); // The "id" variable is a dependency for this useEffect hook; it doesn't need to be run until we know the id of the playlist to fetch.
 
+  // Second useEffect
   // When tracksData updates, compile arrays of tracks and audioFeatures
   useEffect(() => {
     if (!tracksData) {
@@ -107,6 +114,17 @@ const PlaylistComponent = () => {
   //   return tracks.map(({ track }) => track); // Creates a memoized array based on our "tracks" state variable to pass to the TrackList component
   // }, [tracks]);
 
+  const addTrack = () => {
+
+
+    addItemsToPlaylist(id, uris);
+  }
+
+  const handleCallback = (childArtists, childTracks) => {
+    setArtists(childArtists);
+    setSearchTracks(childTracks);
+  }
+
   return (
     <>
       { playlist && (
@@ -161,6 +179,35 @@ const PlaylistComponent = () => {
                   <TrackList tracks={ tracksForTracklist } />
                 ) 
               } */}
+
+              {/* {
+                sortedTracks
+                  && <button onClick={}>+ Add a new track</button>
+              } */}
+
+
+              <div className='d-flex justify-content-between'>
+                <div>
+                  {
+                    sortedTracks
+                      && (
+                        <>
+                          <h3>Add new tracks</h3>
+                          <SearchBar parentCallback={ handleCallback }/>
+                        </>
+                      )
+                  }
+
+                  {
+                    searchTracks
+                      && <SearchResults artists={ artists } tracks={ searchTracks } />
+                  }
+                </div>
+              
+                <h3>Track Recommendations</h3>
+                {/* TODO - Add track recommendations (by Spotify; have them change depending on audio feature specifications) */}
+              </div>
+
             </SectionWrapper>
           </main>
         </>

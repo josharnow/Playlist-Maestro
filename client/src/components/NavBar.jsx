@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { accessToken } from '../spotify';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import { 
@@ -18,7 +18,7 @@ const NavBar = () => {
   const [artists, setArtists] = useState(null);
   const [tracks, setTracks] = useState(null);
   // const [results, setResults] = useState(null);
-  const { id } = useParams();
+  // const { id } = useParams();
 
   useEffect(() => {
     setToken(accessToken); // Sets token to the accessToken variable imported from the spotify.js file

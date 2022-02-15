@@ -5,6 +5,7 @@ import { catchErrors } from '../utils'
 import { getPlaylistById, getAudioFeaturesForTracks } from '../spotify';
 import TrackList from './TrackList';
 import SectionWrapper from './SectionWrapper';
+import Loader from './Loader';
 import { StyledHeader, StyledDropdown } from '../styles';
 
 const PlaylistComponent = () => {
@@ -148,9 +149,10 @@ const PlaylistComponent = () => {
 
               { 
                 sortedTracks 
-                  && (
+                  ? (
                     <TrackList tracks={ sortedTracks } /> // The sortedTracks array is passed to the TrackList component so that every time a different option is selected in the dropdown, the TrackList component will re-render with the sorted array of tracks
-                  ) 
+                  )
+                  : <Loader /> 
               }
 
 
@@ -166,5 +168,4 @@ const PlaylistComponent = () => {
     </>
   )
 }
-
 export default PlaylistComponent;

@@ -3,6 +3,7 @@ import { getTopTracks } from '../spotify';
 import { catchErrors } from '../utils';
 import TrackList from './TrackList';
 import SectionWrapper from './SectionWrapper';
+import Loader from './Loader';
 import { TimeRangeButtons } from './buttons';
 
 const TopTracksComponent = () => {
@@ -26,9 +27,13 @@ const TopTracksComponent = () => {
           setActiveRange={ setActiveRange }
         />
 
-        { topTracks && topTracks.items && (
-          <TrackList tracks={ topTracks.items } />
-        ) }
+        { 
+          (topTracks && topTracks.items) 
+            ? (
+              <TrackList tracks={ topTracks.items } />
+            ) 
+            : <Loader />
+        }
       </SectionWrapper>
     </main>
   );

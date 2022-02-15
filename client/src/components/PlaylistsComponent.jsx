@@ -4,6 +4,7 @@ import { getCurrentUserPlaylists } from '../spotify';
 import { catchErrors } from '../utils';
 import SectionWrapper from './SectionWrapper';
 import PlaylistsGrid from './PlaylistsGrid';
+import Loader from './Loader';
 
 // Two useState hooks and two useEffect hooks are used because the Spotify API
 // has a maximum number of playlists that it will return with each response, but
@@ -62,9 +63,13 @@ const Playlists = () => {
   return (
     <main>
       <SectionWrapper title="Public Playlists" breadcrumb={ true }>
-        { playlists && (
-          <PlaylistsGrid playlists={ playlists } />
-        ) }
+        { 
+          playlists 
+            ? (
+              <PlaylistsGrid playlists={ playlists } />
+            ) 
+            : <Loader />
+        }
       </SectionWrapper>
     </main>
   );

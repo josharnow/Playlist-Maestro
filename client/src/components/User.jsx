@@ -10,6 +10,7 @@ import SectionWrapper from './SectionWrapper';
 import ArtistsGrid from './ArtistsGrid';
 import TrackList from './TrackList';
 import PlaylistsGrid from './PlaylistsGrid';
+import Loader from './Loader';
 import { catchErrors } from '../utils';
 import { StyledHeader } from '../styles';
 
@@ -75,29 +76,32 @@ const User = () => {
       <main>
         { 
           (topArtists)
-            && (
+            ? (
                 <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
                   <ArtistsGrid artists={ topArtists.items.slice(0, 10) } />
                 </SectionWrapper>
             )
+            : <Loader />
         }
 
         {
           (topTracks)
-          && (
-            <SectionWrapper title="Top tracks this month" seeAllLink="/top-tracks">
-              <TrackList tracks={ topTracks.items.slice(0, 10) } />
-            </SectionWrapper>
-          )
+            ? (
+              <SectionWrapper title="Top tracks this month" seeAllLink="/top-tracks">
+                <TrackList tracks={ topTracks.items.slice(0, 10) } />
+              </SectionWrapper>
+            )
+            : <Loader />
         }
 
         {
           (playlists)
-          && (
-            <SectionWrapper title="Playlists" seeAllLink="/playlists">
-              <PlaylistsGrid playlists={ playlists.items.slice(0, 10) } />
-            </SectionWrapper>
-          )
+            ? (
+              <SectionWrapper title="Playlists" seeAllLink="/playlists">
+                <PlaylistsGrid playlists={ playlists.items.slice(0, 10) } />
+              </SectionWrapper>
+            )
+            : <Loader />
         }
       </main>
 

@@ -3,6 +3,7 @@ import { getTopArtists } from '../spotify';
 import { catchErrors } from '../utils';
 import ArtistsGrid from './ArtistsGrid';
 import SectionWrapper from './SectionWrapper';
+import Loader from './Loader';
 import { TimeRangeButtons } from './buttons';
 
 const TopArtistsComponent = () => {
@@ -26,9 +27,13 @@ const TopArtistsComponent = () => {
           setActiveRange={ setActiveRange }
         />
 
-        { topArtists && topArtists.items && (
-          <ArtistsGrid artists={ topArtists.items } />
-        ) }
+        { 
+          (topArtists && topArtists.items)
+            ? (
+              <ArtistsGrid artists={ topArtists.items } />
+            ) 
+            : <Loader />
+        }
       </SectionWrapper>
     </main>
   );

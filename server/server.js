@@ -10,7 +10,7 @@ const db_names = ["Spotify"]
 // const db_names = "User and Spotify"
 
 // Environment vars.
-const port = process.env.EXPRESS_PORT || 8000;
+const port = process.env.PORT || 8000;
 // export const db_name = ["User", "Spotify"];
 
 // Immediately execute the import mongoose.config.js function.

@@ -3,12 +3,14 @@ import express from 'express';
 import cors from 'cors';
 import mongooseFunction from './config/mongoose.config.mjs';
 import spotify from './routes/spotify.routes.mjs';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
 
 const db_names = ["Spotify"]
 // const db_names = "User and Spotify"
 
 // Environment vars.
-const port = process.env.EXPRESS_PORT;
+const port = process.env.EXPRESS_PORT || 8000;
 // export const db_name = ["User", "Spotify"];
 
 // Immediately execute the import mongoose.config.js function.
@@ -19,6 +21,12 @@ mongooseFunction(db_names);
 // mongooseFunction(db_name);
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // req.body undefined without this!
 app.use(express.json());

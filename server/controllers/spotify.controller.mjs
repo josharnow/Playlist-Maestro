@@ -6,9 +6,12 @@
 // import Spotify from '../models/spotify.model.mjs';
 import axios from 'axios';
 import queryString from 'query-string';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
+const client_url = process.env.CLIENT_URL;
 
 /**
  * Generates a random string containing numbers and letters
@@ -74,7 +77,7 @@ export const callback = (req, res) => {
           expires_in,
         });
         
-        res.redirect(`http://localhost:3000/?${queryParams}`);
+        res.redirect(`${client_url}/?${queryParams}`);
         
       } else {
         res.redirect(`/?${queryString.stringify({ error: 'invalid_token' })}`);
@@ -106,4 +109,11 @@ export const refreshToken = (req, res) => {
     .catch(error => {
       res.send(error);
     });
+}
+
+export const deployment = (req, res) => {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+
+  res.sendFile(path.resolve(__dirname, '../../client/build', 'index.html'));
 }

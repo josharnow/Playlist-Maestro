@@ -25,10 +25,15 @@ const StyledLoginButton = styled.a`
   }
 `;
 
+const login_uri =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:8000/api/login'
+    : 'https://playlist-maestro.herokuapp.com/login';
+
 const LoginButton = () => {
 
   return(
-    <StyledLoginButton href="http://localhost:8000/api/login">
+    <StyledLoginButton href={login_uri}>
       Log in
     </StyledLoginButton>
   );

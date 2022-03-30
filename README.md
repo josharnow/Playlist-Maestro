@@ -1,5 +1,5 @@
 # Playlist-Maestro
-Brings finely tuned Spotify playlist recommendations to users based on their specific preferences.
+Brings finely tuned Spotify playlist recommendations to users based on their specific preferences. Written in JavaScript/React.js.
 
 ## Local Installation & Set Up
 
